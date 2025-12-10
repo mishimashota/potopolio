@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shota Mishima | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Base Variables & Reset --- */
+        :root {
+            --primary-color: #2B7A78; /* 知的なティールブルー */
+            --secondary-color: #DEF2F1; /* 薄い背景色 */
+            --text-color: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --bg-color: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Layout Components --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95); /* 少し透過 */
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-list a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 画像を追加し、上から色を重ねて文字を見やすくしています */
+            background: linear-gradient(rgba(222, 242, 241, 0.8), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1352&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            letter-spacing: 0.05em;
+            font-weight: bold;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            /* 仮のプロフィール画像URL */
+            background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .profile-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-info .university {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- Gakuchika Area --- */
+        .story-box {
+            margin-top: 30px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+        }
+
+        .story-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .story-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .story-highlight {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        /* --- Works Section --- */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .work-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 画像を枠いっぱいに表示するための設定 */
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        
+        .work-card:hover .work-image img {
+            transform: scale(1.05);
+        }
+
+        .work-info {
+            padding: 20px;
+        }
+
+        .work-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .work-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 20px;
+            margin-right: 5px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--text-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .story-box {
+                border-left: none;
+                border-top: 4px solid var(--primary-color);
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">SHOTA MISHIMA</div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Create & Communicate</h1>
+            <p>Web Designer / University Student</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-content">
+                <div class="profile-header">
+                    <div class="profile-img"></div>
+                    <div class="profile-info">
+                        <h3>三嶋 祥太</h3>
+                        <span class="university">日本大学理工学部 応用情報工学科 1年</span>
+                        <p>Webデザインとコーディングを勉強中の大学生です。「ユーザーに寄り添うデザイン」を心がけています。趣味はカフェ巡りと写真撮影です。</p>
+                    </div>
+                </div>
+
+                <div class="story-box">
+                    <h4 class="story-title">力を注いだこと：部活動での新入部員獲得への挑戦</h4>
+                    <div class="story-text">
+                        <p>
+                            大学では部活動の副部長を務めました。就任当初、部員数が減少しており、部の存続自体が危ぶまれる危機的な状況でした。
+                            特に悔しさを感じたのは文化祭です。一生懸命準備をしたにも関わらず、展示が素通りされてしまい、活動の面白さを伝えきれていませんでした。
+                        </p>
+                        <p>
+                            「新入部員を1人でも増やす」という目標を掲げ、私は2つのアクションを起こしました。
+                            1つ目は、来場者の目を引くための展示レイアウトの見直しと、説明文の工夫です。
+                            2つ目は、私自身が積極的に来場者に声をかけ、活動の具体的な魅力と熱意を直接伝えることでした。
+                        </p>
+                        <p>
+                            結果、その熱意が伝わったのか、多くの新入部員を迎えることができ、部は再び活気を取り戻しました。
+                        </p>
+                    </div>
+                    <div class="story-highlight">
+                        Learn：受け身ではなく、自ら「伝える努力」をすることの重要性
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="container">
+            <h2 class="section-title">Works</h2>
+            <div class="works-grid">
+                
+                <article class="work-card">
+                    <div class="work-image">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafe Image">
+                    </div>
+                    <div class="work-info">
+                        <h3>架空のカフェサイト</h3>
+                        <p>落ち着いた雰囲気を伝えるための配色と写真選定にこだわりました。</p>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </article>
+
+                <article class="work-card">
+                    <div class="work-image">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Event Image">
+                    </div>
+                    <div class="work-info">
+                        <h3>イベントLP制作</h3>
+                        <p>大学生向けのイベントランディングページ。FVでのインパクトを重視。</p>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </article>
+
+                <article class="work-card">
+                    <div class="work-image">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e0c766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Design Image">
+                    </div>
+                    <div class="work-info">
+                        <h3>バナーデザイン集</h3>
+                        <p>クリック率を意識した様々なパターンのバナーを作成。</p>
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Illustrator</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h3>Contact</h3>
+            <p style="margin: 20px 0;">お問い合わせはメールにてお願いいたします。</p>
+            <p><a href="mailto:example@email.com" style="text-decoration: underline;">example@email.com</a></p>
+            <br>
+            <p>&copy; 2025 Shota Mishima Portfolio.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
