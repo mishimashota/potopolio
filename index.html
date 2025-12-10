@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shota Mishima | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 全体の設定 --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #0d1117; /* GitHubのようなダークな背景 */
+            color: #e6edf3;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(13, 17, 23, 0.9);
+            position: fixed;
+            width: 100%;
+            box-sizing: border-box;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .logo {
+            font-family: 'Roboto Mono', monospace; /* プログラミングコード風フォント */
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #58a6ff; /* ITっぽい青 */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a:hover {
+            color: #58a6ff;
+        }
+
+        /* --- メインビジュアル（トップ画像） --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* IT系の背景画像を設定 (Unsplashから取得) */
+            background: linear-gradient(rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.7)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .hero-content h1 span {
+            color: #58a6ff;
+        }
+
+        .hero-content p {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.2rem;
+            color: #8b949e;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            border: 1px solid #58a6ff;
+            color: #58a6ff;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .btn:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+
+        /* --- コンテンツ共通 --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        h2::before {
+            content: "# ";
+            color: #58a6ff;
+        }
+
+        /* --- About --- */
+        .profile {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            background-color: #30363d;
+            border-radius: 50%;
+            object-fit: cover;
+            /* プロフィール画像があればここにパスを入れる。今は仮画像 */
+            background-image: url('https://via.placeholder.com/200/30363d/8b949e?text=Shota');
+            background-size: cover;
+        }
+
+        .profile-text {
+            flex: 1;
+        }
+
+        .university {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #58a6ff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- Works (カード型デザイン) --- */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .work-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+        }
+
+        .work-card h3 {
+            margin-top: 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0d1117;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .profile { flex-direction: column; align-items: center; }
+            .profile-text { text-align: center; }
+            header { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="#">Shota.M</a></div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>三嶋 祥太</h1>
+            <p>Engineer / Student</p>
+            <p>日本大学理工学部応用情報工学科</p>
+            <a href="#about" class="btn">View Portfolio</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="profile">
+            <div class="profile-img"></div>
+            <div class="profile-text">
+                <span class="university">日本大学理工学部 応用情報工学科</span>
+                <p>
+                    はじめまして、三嶋祥太です。<br>
+                    現在、情報工学を専攻し、プログラミングやIT技術について深く学んでいます。<br>
+                    新しい技術に触れることが好きで、Web開発やアプリケーション制作に挑戦しています。
+                </p>
+                <p>
+                    <strong>Skills:</strong> HTML, CSS, JavaScript, Python, C言語
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <h2>Works</h2>
+        <div class="works-grid">
+            <div class="work-card">
+                <h3>Portfolio Site</h3>
+                <p>現在ご覧いただいているこのポートフォリオサイトです。GitHub Pagesを使用して公開しています。</p>
+                <p style="color: #8b949e; font-size: 0.9rem;">HTML / CSS</p>
+            </div>
+            <div class="work-card">
+                <h3>Python App</h3>
+                <p>大学の課題で制作したデータ分析ツールです。（ここに制作物の説明を書く）</p>
+                <p style="color: #8b949e; font-size: 0.9rem;">Python / Pandas</p>
+            </div>
+            <div class="work-card">
+                <h3>Unity Game</h3>
+                <p>趣味で制作している簡単な2Dアクションゲームです。</p>
+                <p style="color: #8b949e; font-size: 0.9rem;">C# / Unity</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p style="text-align: center;">お問い合わせはメール、またはSNSのDMまでお願いいたします。</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="mailto:example@email.com" class="btn">Send Email</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shota Mishima. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
